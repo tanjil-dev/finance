@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Finance - Edit Bill</title>
+<link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/jquery.datetimepicker.min.css}">
+
+<script th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js}"></script>
+<script th:src="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</head>
+<body>
+
+<div style="background-color:#337ab7;height:50px;">
+	<button class="btn btn-lg btn-info" style="position: absolute; right: 0; margin-right:10px; "><a  th:href="@{/admin_homeBill}"><span style="color: white;">Back</span></a></button>
+	</div>
+
+<div align="center">
+	<h1 style="font-size: 27px">Edit Bill</h1>
+	<br/>
+	<form name = "myForm" onsubmit = "return(validate())" action="#" th:action="@{/saveAdmin_homeBill}" enctype="multipart/form-data" th:object="${bill}" method="post">
+<div class="card">
+	<div class="card card-body">
+		<table class="table table-hover" border="0" cellpadding="10">
+			<tr>
+				<td>Bill ID:</td>
+				<td><input type="text" th:field="*{id}" readonly="readonly"></td>
+			</tr>
+			<tr>
+			<td>Date:<span style="color:red">*</span></td>
+				<td><input id="datetime" th:field="*{date}"  ></td>
+			</tr>
+			<tr>
+				<td>Purpose:<span style="color:red">*</span></td>
+				<td><input type="text" th:field="*{purpose}" ></td>
+			</tr>
+			<tr>
+				<td>From:<span style="color:red">*</span></td>
+				<td><input type="text" th:field="*{brand}" ></td>
+			</tr>
+			<tr>
+				<td>To:<span style="color:red">*</span></td>
+				<td><input type="text" th:field="*{madein}" ></td>
+			</tr>
+			<tr>
+				<td>Mode:<span style="color:red">*</span></td>
+				<td><input type="text" th:field="*{mode}" ></td>
+			</tr>
+			<tr>
+				<td>Amount:<span style="color:red">*</span></td>
+				<td><input type="text" th:field="*{price}" ></td>
+			</tr>
+			<tr>
+			 	<td>Upload file/image:<span style="color:red">*</span></td>
+			 	<td><input type="file" name="file" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><button class="btn btn-primary btn-lg" type="submit">Save</button></td>
+			</tr>
+		</table>
+	</div>
+</div>		
+	</form>
+</div>
+<script type = "text/javascript">
+   
+      
+      function validate() {
+      
+         if( document.myForm.date.value == "" ) {
+            document.myForm.date.focus() ;
+            return false;
+         }
+         
+         if( document.myForm.purpose.value == "" ) {
+            document.myForm.purpose.focus() ;
+            return false;
+         }
+         
+         if( document.myForm.brand.value == "" ) {
+             document.myForm.brand.focus() ;
+             return false;
+          }
+         
+         if( document.myForm.madein.value == "" ) {
+             document.myForm.madein.focus() ;
+             return false;
+          }
+         
+         if( document.myForm.mode.value == "" ) {
+             document.myForm.mode.focus() ;
+             return false;
+          }
+         
+         if( document.myForm.price.value == "" ) {
+             document.myForm.price.focus() ;
+             return false;
+          }
+         
+         if( document.myForm.file.value == "" ) {
+             document.myForm.file.focus() ;
+             return false;
+          }
+         return( true );
+      }
+   
+</script>
+<script th:src="@{/js/jquery.js}"></script>
+	<script th:src="@{/js/jquery.datetimepicker.full.min.js}"></script>
+	<script>
+        $("#datetime").datetimepicker();
+  </script>
+</body>
+</html>

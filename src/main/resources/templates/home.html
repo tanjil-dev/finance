@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>SureCash Bill</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Our Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+	
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+</style>
+	
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <a class="sidebar-brand" th:href="@{/home}">
+              <img style="max-width: none !important; width: 195px;" th:src="@{assets/img/800px-SureCash_Logo.png}">
+            </a>
+            </div>
+
+            <ul class="list-unstyled components">
+                <li class="active">
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Create a bill</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a th:href="@{/new}">Convayence Bill</a>
+                        </li>
+                        <li>
+                            <a href="#">Food Bill</a>
+                        </li>
+                        <li>
+                            <a href="#">Gadget Bill</a>
+                        </li>
+                    </ul>
+                </li>
+        </nav>
+
+        <!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/history}">Bill History</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/}">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                   
+                </div>
+            </nav>
+
+<div align="center">
+<h1 style="font-size: 27px">Welcome, <span th:text="${user.name}"></span><span> </span><span th:text="${user.lastName}"></span>!</h1>	
+<br/>
+</div>
+<div class="table" align="center">
+<h1 style="font-size: 27px">Pending Bill List</h1>
+<br/>
+ 	<div th:if="${message}">
+		<h2 th:text="${message}"/>
+	</div>
+	
+	<div align="left">
+		<input type="text" placeholder="search here" name="search" id="search" class="form-control" style="width: 300px;" />
+	</div>
+	<!-- <div align="right">
+		<a  th:href="@{/createExcel}"  ><img th:src="@{/img/excel-xls-icon-2.png}" style="width:50px;margin-left: 10px;" ></a>
+		<a  th:href="@{/createPdf}"  ><img th:src="@{/img/pdf-icon.png}" style="width:50px;margin-left: 10px;" ></a>
+	</div> -->
+	<br>
+	<div class="card">
+		<div class="card card-body">
+			<table class="table table-hover" id="bill_table" align="center" cellpadding="20">
+				<thead>
+				<tr>
+				<th>Bill ID</th>
+				<th>Date and Time</th>
+				<th>Purpose</th>
+				<th>From</th>
+			    <th>To</th>
+			    <th>Mode</th>
+			    <th>Amount</th>
+			    <th>Remark</th>
+			    <th>Image</th>
+			    <th>Approved by</th>
+			    <th>Paid by</th>
+			    <th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="product : ${listBills}">
+				<td th:text="${product.id}"></td>
+				<td th:text="${product.date}"></td>
+				<td th:text="${product.purpose}"></td>
+				<td th:text="${product.brand}"></td>
+				<td th:text="${product.madein}"></td>
+				<td th:text="${product.mode}"></td>
+				<td th:text="${product.price}"></td>
+				<td th:text="${product.note}"></td>
+				<td>
+				<div th:if="${product.imagePath != null}">
+				<img id="myImg" style="height: 200px; width: 175px;" alt=""  th:src="@{|/image/${product.imagePath}|}">
+				</div>
+				</td>
+				<td th:text="${product.approvedby}"></td>
+				<td th:text="${product.paidby}"></td>
+				<td>
+					<button class="btn btn-lg btn-info" style="margin-right:10px; width: 90px;"><a th:href="@{'/edit/' + ${product.id}}"><span style="color: white;">Edit</span></a></button><br>
+				<br>	
+					<button class="btn btn-lg btn-primary" style="margin-right:10px;"><a th:href="@{'/delete/' + ${product.id}}"><span style="color: white;">Delete</span></a></button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <!-- <div id="caption"></div> -->
+</div>
+	
+		</div>
+	</div>
+	</div>
+</div>
+            
+    </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+                $(this).toggleClass('active');
+            });
+        });
+        
+     var modal = document.getElementById("myModal");
+
+     // Get the image and insert it inside the modal - use its "alt" text as a caption
+     var img = document.getElementById("myImg");
+     var modalImg = document.getElementById("img01");
+     //var captionText = document.getElementById("caption");
+     img.onclick = function(){
+       modal.style.display = "block";
+       modalImg.src = this.src;
+       captionText.innerHTML = this.alt;
+     }
+
+     // Get the <span> element that closes the modal
+     var span = document.getElementsByClassName("close")[0];
+
+     // When the user clicks on <span> (x), close the modal
+     span.onclick = function() { 
+       modal.style.display = "none";
+     }
+        
+     $(document).ready(function(){
+    	$('#search').keyup(function(){
+    		search_table($(this).val());
+    	}); 
+    	
+    	function search_table(value){
+    		$('#bill_table tr').each(function(){
+    			var found = 'false';
+    			$(this).each(function(){
+    				if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+    					{
+    						found = 'true';
+    					}
+    			});
+    			
+    			if(found == 'true')
+    			{
+    				$(this).show();
+    			}
+    			else
+    			{
+    				$(this).hide();	
+    			}
+    		});
+    	}
+    	
+     });
+     
+    </script>
+</body>
+
+</html>
